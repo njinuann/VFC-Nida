@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <link rel="icon" href="images/Shopperslogo.png" />
+                <title>CRB Reporting</title>               
+            </f:facet>
+            <link rel="stylesheet" href="css/animate.css"></link>
+            <link rel="stylesheet" href="css/main.css"/>
+            <link rel="stylesheet" href="css/menu.css"/>
+        </h:head>
+
+        <h:body>
+            <h:form id="dataForm">
+                <p:growl id="growl" life="2000" />     
+                <p:layout fullPage="true" style="min-width:900px;min-height:900px;">
+                    <p:layoutUnit position="north" size="80" resizable="true" closable="true" collapsible="true">
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:graphicImage url="images/Shopperslogo2.png" style="width: 70%; height:70%; border-radius: 0%;"/>
+                            </f:facet>                           
+                            <f:facet name="right">
+                                <p:separator/>
+                                <p:splitButton icon="ui-icon-person" value="User : #{username}">
+                                    <p:separator/>
+                                    <p:menuitem value="Logout" action="#{LoginBean.logout}" icon="ui-icon-locked" 
+                                                style="font-size: 12px;"/>
+                                    <p:separator/>
+                                </p:splitButton>
+                            </f:facet>
+                        </p:toolbar>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="south" size="40" closable="true" collapsible="true">
+                        <p:outputLabel value="&#169; #{bankName}" style="float: left;color: #ff6666;font-family: impact;font-size: 15px;"/>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="west" size="175" header="Menu" collapsible="true">
+                        <p:menu>
+                            <p:submenu label="Options">
+                                <p:menuitem value="Query Customer Delinquency" url="/crbDelinqQuery.xhtml?faces-redirect=true" style="font-weight:bold;color: #ff6666; border: 1px solid;" />
+                            </p:submenu>
+
+                        </p:menu>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center" resizable="true" size="200" minSize="40" maxSize="200">
+                        <p:fieldset legend="Crb Reports" style="margin-bottom:20px">
+                            <h:panelGrid columns="3" cellpadding="6" >
+                                <p:selectOneMenu id="names" value="#{LoadCRBData.reportType}" style="width: 300px;">                              
+                                    <f:selectItem itemValue="IC" itemLabel="Individual Consumer" />
+                                    <f:selectItem itemValue="NI" itemLabel="Non Individual Consumer" />
+                                    <f:selectItem itemValue="CA" itemLabel="Credit Application Info" />
+                                    <f:selectItem itemValue="CI" itemLabel="Collateral Info" />
+                                    <f:selectItem itemValue="GI" itemLabel="Guarantor Info" />
+                                    <f:selectItem itemValue="SI" itemLabel="StakeHolder Info" />                                  
+                                </p:selectOneMenu>
+                                <p:commandButton value="Load Data" id="loadDataBtn" update="growl :dataForm:crbrecords" action="#{LoadCRBData.loadCrbReportData}" style="margin-right:20px;width: 110px;" styleClass="ui-priority-primary" />
+                                <!--p:spacer width="1" height="22" style="position: relative; bottom: -5px;background-color: #A8A8A8; margin-left: 10px;margin-right: 10px" /-->
+                                <p:inputText id="reportPath" value="#{LoadCRBData.reportpath}" style="width: 300px; color:blue;background:gainsboro;" readonly="true" />
+                                <p:commandButton value="Extract Data" id="ExportDataBtn" update="growl :dataForm:crbrecords" action="#{LoadCRBData.extractCrbReportData()}" style="margin-right:20px;width: 110px; " styleClass="ui-priority-primary" />
+                                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" oncomplete="PF('dlg3').show()"/>
+
+                                <p:dialog widgetVar="statusDialog" modal="true" draggable="false" 
+                                          closable="false" resizable="false" showHeader="false">
+                                    <p:graphicImage value="images/sun-loader.gif" />
+                                </p:dialog>
+                                <p:dialog header="Execution Status" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100" resizable="false">                                   
+                                    <p:graphicImage value="images/completed.png" />
+                                </p:dialog>
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <p:dataTable id="crbrecords" var="crbrecords" value="#{LoadCRBData.test}" paginator="true" rows="100"
+                                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                     rowsPerPageTemplate="100,200,300,400,500,1000"   lazy="true" >                      
+                            <p:columns value="#{LoadCRBData.columns}" var="column" columnIndexVar="colIndex">  
+                                <f:facet name="header">  
+                                    #{column}  
+                                </f:facet>  
+                                <h:outputText value="#{crbrecords[colIndex]}"/>
+                            </p:columns> 
+                        </p:dataTable> 
+                    </p:layoutUnit>
+
+                </p:layout>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>
+
