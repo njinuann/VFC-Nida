@@ -30,13 +30,13 @@ public class servletContextListener implements ServletContextListener
     @Override
     public void contextInitialized(ServletContextEvent sce)
     {
-        //  String getBankName = CRBRController.bankName;
+        //  String getBankName = VNController.bankName;
         //    sce.getServletContext().setAttribute("bankName", getBankName);
         System.out.println("Tomcat Started");       
-        CRBRController.initialize();
+        VNController.initialize();
         DBManager.initialise();
         TDClient dbUtility = DBManager.fetchDBUtility();
-        String getBankName = "SELECT DISPLAY_VALUE FROM " + CRBRController.CoreSchemaName + ".CTRL_PARAMETER WHERE PARAM_CD = ? ";
+        String getBankName = "SELECT DISPLAY_VALUE FROM " + VNController.CoreSchemaName + ".CTRL_PARAMETER WHERE PARAM_CD = ? ";
         try
         {
             try (ResultSet rs = dbUtility.executePrdStmtToResultSet(getBankName, "S04"))
@@ -49,7 +49,7 @@ public class servletContextListener implements ServletContextListener
         }
         catch (Exception m)
         {
-            CRBRController.bRLogger.logEvent("[contextInitialized]", m);
+            VNController.bRLogger.logEvent("[contextInitialized]", m);
         }
         DBManager.releaseDBUtility(dbUtility);
     }

@@ -6,7 +6,7 @@
 package Beans;
 
 import DAO.TDClient;
-import Controller.CRBRController;
+import Controller.VNController;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class LoadCRBData implements Serializable
     public LoadCRBData()
     {
         //  dynamicColumns();
-        setReportpath(CRBRController.ReportPath);
+        setReportpath(VNController.ReportPath);
     }
 
     public String loadCrbReportData()
@@ -147,7 +147,7 @@ public class LoadCRBData implements Serializable
                     // String Ver = "001";
                     System.out.println("Program Start" + timestamp);
 
-                    File outDir = new File(CRBRController.ReportPath + "\\INDIVIDUAL_CONSUMER\\");
+                    File outDir = new File(VNController.ReportPath + "\\INDIVIDUAL_CONSUMER\\");
                     System.err.println(">>>>>>>>>>>> " + outDir);
                     if (!outDir.exists())
                     {
@@ -164,13 +164,13 @@ public class LoadCRBData implements Serializable
                         int curr_version = Integer.parseInt(fname_parts[0].substring(14, 17));
                         curr_version++;
 
-                        archivePrevFiles(CRBRController.ReportPath + "\\INDIVIDUAL_CONSUMER");
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBCE" + formatter.format(timestamp) + format_version(curr_version) + "." + CRBRController.BankCode);
+                        archivePrevFiles(VNController.ReportPath + "\\INDIVIDUAL_CONSUMER");
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBCE" + formatter.format(timestamp) + format_version(curr_version) + "." + VNController.BankCode);
                     }
                     else
                     {
-                        showMessage("Error", CRBRController.ReportPath + "\\INDIVIDUAL_CONSUMER" + " (file/folder not accessible)");
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBCE" + formatter.format(timestamp) + "001" + "." + CRBRController.BankCode);
+                        showMessage("Error", VNController.ReportPath + "\\INDIVIDUAL_CONSUMER" + " (file/folder not accessible)");
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBCE" + formatter.format(timestamp) + "001" + "." + VNController.BankCode);
 
                     }
                     //StringBuilder fileContent = new StringBuilder();
@@ -365,7 +365,7 @@ public class LoadCRBData implements Serializable
                     // String Ver = "001";
                     System.out.println("Program Start" + timestamp);
 
-                    File outDir = new File(CRBRController.ReportPath + "\\NON_INDIVIDUAL_CONSUMER\\");
+                    File outDir = new File(VNController.ReportPath + "\\NON_INDIVIDUAL_CONSUMER\\");
                     System.err.println(">>>>>>>>>>>> " + outDir);
                     if (!outDir.exists())
                     {
@@ -382,12 +382,12 @@ public class LoadCRBData implements Serializable
                         int curr_version = Integer.parseInt(fname_parts[0].substring(14, 17));
                         curr_version++;
 
-                        archivePrevFiles(CRBRController.ReportPath + "\\NON_INDIVIDUAL_CONSUMER");
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBCI" + formatter.format(timestamp) + format_version(curr_version) + "." + CRBRController.BankCode);
+                        archivePrevFiles(VNController.ReportPath + "\\NON_INDIVIDUAL_CONSUMER");
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBCI" + formatter.format(timestamp) + format_version(curr_version) + "." + VNController.BankCode);
                     }
                     else
                     {
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBCI" + formatter.format(timestamp) + "001" + "." + CRBRController.BankCode);
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBCI" + formatter.format(timestamp) + "001" + "." + VNController.BankCode);
 
                     }
                     StringBuilder fileContent = new StringBuilder();
@@ -559,7 +559,7 @@ public class LoadCRBData implements Serializable
                     // String Ver = "001";
                     System.out.println("Program Start" + timestamp);
 
-                    File outDir = new File(CRBRController.ReportPath + "\\CREDIT_APP_INFO\\");
+                    File outDir = new File(VNController.ReportPath + "\\CREDIT_APP_INFO\\");
                     System.err.println(">>>>>>>>>>>> " + outDir);
                     if (!outDir.exists())
                     {
@@ -576,12 +576,12 @@ public class LoadCRBData implements Serializable
                         int curr_version = Integer.parseInt(fname_parts[0].substring(14, 17));
                         curr_version++;
 
-                        archivePrevFiles(CRBRController.ReportPath + "\\CREDIT_APP_INFO");
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBCA" + formatter.format(timestamp) + format_version(curr_version) + "." + CRBRController.BankCode);
+                        archivePrevFiles(VNController.ReportPath + "\\CREDIT_APP_INFO");
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBCA" + formatter.format(timestamp) + format_version(curr_version) + "." + VNController.BankCode);
                     }
                     else
                     {
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBCA" + formatter.format(timestamp) + "001" + "." + CRBRController.BankCode);
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBCA" + formatter.format(timestamp) + "001" + "." + VNController.BankCode);
 
                     }
                     StringBuilder fileContent = new StringBuilder();
@@ -679,7 +679,7 @@ public class LoadCRBData implements Serializable
                     // String Ver = "001";
                     System.out.println("Program Start" + timestamp);
 
-                    File outDir = new File(CRBRController.ReportPath + "\\COLLATERAL_INFORMATION\\");
+                    File outDir = new File(VNController.ReportPath + "\\COLLATERAL_INFORMATION\\");
                     System.err.println(">>>>>>>>>>>> " + outDir);
                     if (!outDir.exists())
                     {
@@ -696,12 +696,12 @@ public class LoadCRBData implements Serializable
                         int curr_version = Integer.parseInt(fname_parts[0].substring(14, 17));
                         curr_version++;
 
-                        archivePrevFiles(CRBRController.ReportPath + "\\COLLATERAL_INFORMATION");
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBCR" + formatter.format(timestamp) + format_version(curr_version) + "." + CRBRController.BankCode);
+                        archivePrevFiles(VNController.ReportPath + "\\COLLATERAL_INFORMATION");
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBCR" + formatter.format(timestamp) + format_version(curr_version) + "." + VNController.BankCode);
                     }
                     else
                     {
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBCR" + formatter.format(timestamp) + "001" + "." + CRBRController.BankCode);
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBCR" + formatter.format(timestamp) + "001" + "." + VNController.BankCode);
 
                     }
                     StringBuilder fileContent = new StringBuilder();
@@ -801,7 +801,7 @@ public class LoadCRBData implements Serializable
                     // String Ver = "001";
                     System.out.println("Program Start" + timestamp);
 
-                    File outDir = new File(CRBRController.ReportPath + "\\GUARANTOR_INFORMATION\\");
+                    File outDir = new File(VNController.ReportPath + "\\GUARANTOR_INFORMATION\\");
                     System.err.println(">>>>>>>>>>>> " + outDir);
                     if (!outDir.exists())
                     {
@@ -818,12 +818,12 @@ public class LoadCRBData implements Serializable
                         int curr_version = Integer.parseInt(fname_parts[0].substring(14, 17));
                         curr_version++;
 
-                        archivePrevFiles(CRBRController.ReportPath + "\\GUARANTOR_INFORMATION");
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBGI" + formatter.format(timestamp) + format_version(curr_version) + "." + CRBRController.BankCode);
+                        archivePrevFiles(VNController.ReportPath + "\\GUARANTOR_INFORMATION");
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBGI" + formatter.format(timestamp) + format_version(curr_version) + "." + VNController.BankCode);
                     }
                     else
                     {
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBGI" + formatter.format(timestamp) + "001" + "." + CRBRController.BankCode);
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBGI" + formatter.format(timestamp) + "001" + "." + VNController.BankCode);
 
                     }
                     StringBuilder fileContent = new StringBuilder();
@@ -951,7 +951,7 @@ public class LoadCRBData implements Serializable
                     // String Ver = "001";
                     System.out.println("Program Start" + timestamp);
 
-                    File outDir = new File(CRBRController.ReportPath + "\\STAKEHOLDER\\");
+                    File outDir = new File(VNController.ReportPath + "\\STAKEHOLDER\\");
                     System.err.println(">>>>>>>>>>>> " + outDir);
                     if (!outDir.exists())
                     {
@@ -968,12 +968,12 @@ public class LoadCRBData implements Serializable
                         int curr_version = Integer.parseInt(fname_parts[0].substring(14, 17));
                         curr_version++;
 
-                        archivePrevFiles(CRBRController.ReportPath + "\\STAKEHOLDER");
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBSI" + formatter.format(timestamp) + format_version(curr_version) + "." + CRBRController.BankCode);
+                        archivePrevFiles(VNController.ReportPath + "\\STAKEHOLDER");
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBSI" + formatter.format(timestamp) + format_version(curr_version) + "." + VNController.BankCode);
                     }
                     else
                     {
-                        filewriter = new FileWriter(outDir + "\\" + "CRBBSI" + formatter.format(timestamp) + "001" + "." + CRBRController.BankCode);
+                        filewriter = new FileWriter(outDir + "\\" + "CRBBSI" + formatter.format(timestamp) + "001" + "." + VNController.BankCode);
 
                     }
                     StringBuilder fileContent = new StringBuilder();
@@ -1099,7 +1099,7 @@ public class LoadCRBData implements Serializable
         File archDir = new File(fromDir + "-Archive");
         /*if (!outDir.exists() || !outDir.isDirectory()) {
          System.out.println("archiving the file....directiry found");
-            //archivePrevFiles(CRBRController.ReportPath + "\\INDIVIDUAL_CONSUMER");
+            //archivePrevFiles(VNController.ReportPath + "\\INDIVIDUAL_CONSUMER");
          return;
          }*/
         if (!archDir.exists())

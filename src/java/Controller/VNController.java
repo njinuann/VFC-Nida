@@ -14,18 +14,18 @@ import java.util.StringTokenizer;
  *
  * @author Neptune-Njinu
  */
-public class CRBRController
+public class VNController
 {
 
     private static Properties settings;
     public static String EnableDebug = "Y";
     public static int YearsToKeepLogs;
-    public static String bankName = "Shoppers Sacco";
-    public static String CoreSchemaName, CoreWsdlURL, CMSchemaJdbcUrl, CMSchemaName, CMSchemaPassword, AllowedLoginRoles, ReportPath, BankCode;
-    public static final String confDir = "conf", logsDir = "logs";
+    public static String bankName = "Vision Finance Bank";
+    public static String CoreSchemaName, CoreWsdlURL, CMSchemaJdbcUrl, CMSchemaName, CMSchemaPassword;
+    public static final String confDir = "nida/conf", logsDir = "nida/logs";
     public static int DisplayLines = 500;
-    public static BRLogger bRLogger = new BRLogger("CRBReporting", "logs");
-    public static String CRBPublicKey, CRBPrivateKey, CRBUrl;
+    public static BRLogger bRLogger = new BRLogger("nida", "logs");
+    public static String NidaPublicKey, NidaPrivateKey, NidaUrl;
 
     public static void initialize()
     {
@@ -58,20 +58,20 @@ public class CRBRController
             CMSchemaPassword = BRCrypt.decrypt(settings.getProperty("CMSchemaPassword"));
 
             CMSchemaJdbcUrl = settings.getProperty("CMSchemaJdbcUrl");
-            ReportPath = settings.getProperty("ReportPath");
+          //  ReportPath = settings.getProperty("ReportPath");
             //CoreWsdlURL = settings.getProperty("CoreWsdlURL");
 
             EnableDebug = settings.getProperty("EnableDebug", "N");
             CMSchemaName = settings.getProperty("CMSchemaName");
 
             //JdbcDriverName = settings.getProperty("JdbcDriverName");
-            AllowedLoginRoles = settings.getProperty("AllowedLoginRoles");
+           // AllowedLoginRoles = settings.getProperty("AllowedLoginRoles");
 
-            BankCode = settings.getProperty("BankCode");
-            CRBPublicKey = settings.getProperty("CRBPublicKey");
+           // BankCode = settings.getProperty("BankCode");
+            NidaPublicKey = settings.getProperty("NidaPublicKey");
             
-            CRBPrivateKey = settings.getProperty("CRBPrivateKey");
-            CRBUrl = settings.getProperty("CRBUrl");
+            NidaPrivateKey = settings.getProperty("NidaPrivateKey");
+           NidaUrl = settings.getProperty("NidaUrl");
             try
             {
                 DisplayLines = Integer.parseInt(settings.getProperty("DisplayLines"));

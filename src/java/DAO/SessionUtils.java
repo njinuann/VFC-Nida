@@ -44,6 +44,16 @@ public class SessionUtils {
             return null;
         }
     }
+    public static String getBuId()
+    {
+        HttpSession session = getSession();
+        if (session != null) {
+            return (String) session.getAttribute("buId");
+        }
+        else {
+            return null;
+        }
+    }
 
     public static void logOut()
     {

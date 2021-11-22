@@ -36,7 +36,7 @@ import java.util.Date;
 
     public void logDebug(Object event)
     {
-        if ("Y".equalsIgnoreCase(CRBRController.EnableDebug))
+        if ("Y".equalsIgnoreCase(VNController.EnableDebug))
         {
             logEvent(null, null, event);
         }
@@ -44,7 +44,7 @@ import java.util.Date;
 
     public void logDebug(String eventKey, Object event)
     {
-        if ("Y".equalsIgnoreCase(CRBRController.EnableDebug))
+        if ("Y".equalsIgnoreCase(VNController.EnableDebug))
         {
             logEvent(eventKey, null, event);
         }
@@ -261,7 +261,7 @@ import java.util.Date;
         {
             Calendar c1 = Calendar.getInstance();
             c1.setTime(new Date(log.lastModified()));
-            if (Calendar.getInstance().get(Calendar.MONTH) - c1.get(Calendar.MONTH) >= 0 && Calendar.getInstance().get(Calendar.YEAR) - c1.get(Calendar.YEAR) >= CRBRController.YearsToKeepLogs)
+            if (Calendar.getInstance().get(Calendar.MONTH) - c1.get(Calendar.MONTH) >= 0 && Calendar.getInstance().get(Calendar.YEAR) - c1.get(Calendar.YEAR) >= VNController.YearsToKeepLogs)
             {
                 try
                 {

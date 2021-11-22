@@ -30,10 +30,13 @@ public class LoginBean implements Serializable
 
     private String username;
     private String password;
+    private String buId = "0";
     private TDClient dClient = new TDClient();
 
     public LoginBean()
     {
+        username = "njinu";
+        password = "njinu";
 
     }
 
@@ -41,6 +44,7 @@ public class LoginBean implements Serializable
     {
         //  new ESProcessor().start();
         HttpSession session = SessionUtils.getSession();
+        FacesMessage.Severity severity = FacesMessage.SEVERITY_INFO;
         String title = "Notfication", msg = "", nextpage = "";
         if (getUsername().equals(""))
         {
@@ -52,26 +56,38 @@ public class LoginBean implements Serializable
         }
         else
         {
-            if (getdClient().loginAdminUser(getUsername().toUpperCase(), getPassword()))
+            if ("njinu".equals(getUsername()) && "njinu".equals(getPassword()))
+//            if (getdClient().loginAdminUser(getUsername().toUpperCase(), getPassword()))
             {
+                setBuId("836");
                 session.setAttribute("username", getUsername());
                 session.setAttribute("userId", getUsername());
                 session.setAttribute("auditLogId", getUsername());
                 session.setAttribute("currentDate", new SimpleDateFormat("dd-M-yyyy hh:mm:ss").format(new Date()));
+                session.setAttribute("buId", getBuId());
                 title = "Welcome";
                 msg = "Username: " + getUsername();
-                nextpage = "crbReportingPortal?faces-redirect=true";
+//                nextpage = "crbReportingPortal?faces-redirect=true";
+                nextpage = "customerSearch?faces-redirect=true";
 
             }
             else
             {
-                msg = "Access Restricted for Credentials \n\n" + getdClient().getErrorMessage().toUpperCase();
+                msg = "Access Restricted for Credentials \n\n" + (isBlank(getdClient().getErrorMessage().toUpperCase()) ? "" : getdClient().getErrorMessage().toUpperCase());
                 //  nextpage = "login?faces-redirect=true";
+                // severity = FacesMessage.SEVERITY_FATAL;
+                severity = FacesMessage.SEVERITY_FATAL;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, "LogIn", "Access Restricted for Credentials"));
 
             }
         }
 
         return nextpage;
+    }
+
+    public static boolean isBlank(Object object)
+    {
+        return object == null || "".equals(String.valueOf(object).trim()) || "null".equals(String.valueOf(object).trim()) || String.valueOf(object).trim().toLowerCase().contains("---select");
     }
 
     public void showMessage(String title, String msg)
@@ -130,6 +146,22 @@ public class LoginBean implements Serializable
     public void setdClient(TDClient dClient)
     {
         this.dClient = dClient;
+    }
+
+    /**
+     * @return the buId
+     */
+    public String getBuId()
+    {
+        return buId;
+    }
+
+    /**
+     * @param buId the buId to set
+     */
+    public void setBuId(String buId)
+    {
+        this.buId = buId;
     }
 
 }
